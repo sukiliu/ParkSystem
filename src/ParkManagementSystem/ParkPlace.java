@@ -21,17 +21,17 @@ public class ParkPlace {
 
     public Ticket parking(Car c) throws NoPlaceException {
         if (GetAvailableNum() == 0) {
-            throw new NoPlaceException("æ²¡æœ‰åœè½¦ä½ï¼");
+            throw new NoPlaceException("Í£³µ³¡ÒÑÂú");
         }
         Ticket ticket = new Ticket();
         parkedCarList.put(ticket, c);
         return ticket;
     }
 
-    public Car GetParkedCar(Ticket ppT) throws NoCarException {
+    public Car fetchCar(Ticket ppT) throws NoCarException {
         if (parkedCarList.containsKey(ppT)) {
             return parkedCarList.remove(ppT);
         }
-        throw new NoCarException("æ²¡æœ‰æ­¤è½¦ï¼");
+        throw new NoCarException("Ã»ÓĞ´Ë³µ");
     }
 }
