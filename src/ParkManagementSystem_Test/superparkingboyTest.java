@@ -42,22 +42,22 @@ public class superparkingboyTest {
 	 * 都空 取车
 	 */
 	@Test(expected = NoCarException.class)
-	public void should_fetch_Sucess_when_park_is_empty() {
+	public void should_fetch_faild_when_park_is_empty() {
 		parkingBoy.fetch(new Ticket());
 	}
 
 	/*
-	 * 不全为空 ,取车
+	 *  不全为空 ,取车
 	 */
-//	@Test(expected = NoCarException.class)
-//	public void should_fetch_Sucess_when_park_is_notempty() {
-//		for (int i = 0; i < totalAmount / 2; i++) {
-//			parkingBoy.park(new Car());
-//		}
-//		Car car = new Car();
-//		Ticket ticket = parkingBoy.park(car);
-//		parkingBoy.fetch(ticket);
-//	}
+	@Test
+	public void should_fetch_Sucess_when_park_is_notempty() {
+		for (int i = 0; i < totalAmount / 2; i++) {
+			parkingBoy.park(new Car());
+		}
+		Car car = new Car();
+		Ticket ticket = parkingBoy.park(car);
+		Assert.assertSame(car,parkingBoy.fetch(ticket));
+	}
 
 	/*
 	 * 全满 ,停车
@@ -71,18 +71,36 @@ public class superparkingboyTest {
 	}
 
 	/*
-	 * Super Parking Boy测试 停车停在空车率大的那个停车场
+	 * Super Parking Boy测试 停车停在空置率大的那个停车场
 	 */
-	@Test
+
+	@Test	
 	public void should_park_in_the_more_VacancyRate_parkplace() {
-		// 未测试
+		for (int i = 1; i <= 10; i++) {
+			parkingBoy.park(new Car());
+		}//此时第一个停车场空置率<第二个停车场空置率。
+		Assert.assertEquals((Integer)6 , parkPlaces.get(0).GetAvailableNum());
+		Assert.assertEquals((Integer)14 , parkPlaces.get(1).GetAvailableNum());
+		Assert.assertEquals(true , parkPlaces.get(0).GetVacancyRate()< parkPlaces.get(1).GetVacancyRate());
+		parkingBoy.park(new Car());
+		Assert.assertEquals((Integer)6 , parkPlaces.get(0).GetAvailableNum());
+		Assert.assertEquals((Integer)13 , parkPlaces.get(1).GetAvailableNum());
+		
 	}
 
 	/*
-	 * super parking boy测试 两个车库空车率相同时停在第一个
+	 * Super Parking Boy测试 两个车库空置率相同时停在第一个
 	 */
+	
 	@Test
 	public void should_park_in_the_first_parkplace_if_all_park_VacancyRate_same() {
-		// 未测试
+		for (int i = 1; i <= 15; i++) {
+			parkingBoy.park(new Car());
+		}//此时两个停车场空置率都为50%。
+		Assert.assertEquals((Integer)5 , parkPlaces.get(0).GetAvailableNum());
+		Assert.assertEquals((Integer)10 , parkPlaces.get(1).GetAvailableNum());
+		parkingBoy.park(new Car());
+		Assert.assertEquals((Integer)4 , parkPlaces.get(0).GetAvailableNum());
+		Assert.assertEquals((Integer)10 , parkPlaces.get(1).GetAvailableNum());
 	}
 }

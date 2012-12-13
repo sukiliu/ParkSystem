@@ -8,6 +8,6 @@ public class FirstAvailableParkingLotChooser implements ParkingLotChooser {
         for(ParkPlace parkPlace:parkPlaceList){
             if(parkPlace.GetAvailableNum()>0) return parkPlace;
         }
-        throw new NoPlaceException("鎵�鏈夌殑鍋滆溅鍦洪兘宸叉弧");
+        throw new NoPlaceException("所有的停车场都已满");
     }
 }

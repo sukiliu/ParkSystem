@@ -49,14 +49,14 @@ public class smartparkingboyTest {
 	/*
 	 * 不全为空 ,取车
 	 */
-	@Test( expected = NoCarException.class)
+	@Test (expected = NoCarException.class)
 	public void should_fetch_Sucess_when_park_is_notempty() {
 		for (int i = 0; i < totalAmount / 2; i++) {
 			parkingBoy.park(new Car());
 		}
 		Car car = new Car();
 		Ticket ticket = parkingBoy.park(car);
-		Assert.assertSame(car, parkingBoy.fetch(ticket));
+		Assert.assertSame(car,parkingBoy.fetch(ticket));
 	}
 
 	/*
@@ -80,7 +80,7 @@ public class smartparkingboyTest {
 	}
 
 	/*
-	 * smart parking boy测试 两个车库空间相同时停在第一个
+	 * smart parking boy测试 车库空间相同时停在第一个
 	 */
 	@Test
 	public void should_park_in_the_first_parkplace_if_park_availableSize_same() {
@@ -89,12 +89,5 @@ public class smartparkingboyTest {
 		}
 		parkingBoy.park(new Car());
 		Assert.assertEquals((Integer) 9, parkPlaces.get(0).GetAvailableNum());
-	}
-	/*
-	 * Super Parking Boy测试 停车停在空车率大的那个停车场
-	 */
-	@Test
-	public void should_park_in_the_more_VacancyRate_parkplace() {
-
 	}
 }

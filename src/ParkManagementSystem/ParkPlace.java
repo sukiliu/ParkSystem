@@ -4,16 +4,13 @@ import java.util.Map;
 
 public class ParkPlace {
     private Map<Ticket, Car> parkedCarList = new HashMap<Ticket, Car>();
-    private Integer maxParkingNum=50;
+    private Integer maxParkingNum;
 
     public Integer GetAvailableNum() {
         return maxParkingNum - parkedCarList.size();
     }
     public Double GetVacancyRate(){
-        return  GetAvailableNum()/maxParkingNum.doubleValue();
-    }
-    public ParkPlace() {
-        super();
+        return  GetAvailableNum().doubleValue()/maxParkingNum.doubleValue();
     }
     public ParkPlace(int maxParkingNum) {
         this.maxParkingNum = maxParkingNum;
