@@ -24,7 +24,8 @@ public class smartparkingboyTest {
 			parkPlaces.add(new ParkPlace(parknum));
 			totalAmount += parknum;
 		}
-		parkingBoy = new ParkingBoy(parkPlaces,new MaxAvailableParkingLotChooser());
+		parkingBoy = new ParkingBoy(parkPlaces,
+				new MaxAvailableParkingLotChooser());
 		this.parkPlaces = parkPlaces;
 	}
 
@@ -49,14 +50,14 @@ public class smartparkingboyTest {
 	/*
 	 * 不全为空 ,取车
 	 */
-	@Test (expected = NoCarException.class)
+	@Test(expected = NoCarException.class)
 	public void should_fetch_Sucess_when_park_is_notempty() {
 		for (int i = 0; i < totalAmount / 2; i++) {
 			parkingBoy.park(new Car());
 		}
 		Car car = new Car();
 		Ticket ticket = parkingBoy.park(car);
-		Assert.assertSame(car,parkingBoy.fetch(ticket));
+		Assert.assertSame(car, parkingBoy.fetch(ticket));
 	}
 
 	/*
