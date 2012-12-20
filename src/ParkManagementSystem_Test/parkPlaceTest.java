@@ -9,7 +9,7 @@ public class parkPlaceTest {
 
     @Test
     public void parkPlace_Parking_HavePlace(){
-        ParkPlace  PP = new  ParkPlace(20);
+        ParkPlaces  PP = new  ParkPlaces(20);
         Car C = new Car();
         Ticket proof = PP.parking(C) ;
         Assert.assertNotNull(proof);
@@ -17,7 +17,7 @@ public class parkPlaceTest {
 
     @Test ( expected = NoPlaceException.class)
     public void parkPlace_Parking_NoPlace()   {
-        ParkPlace  PP = new  ParkPlace(1);
+        ParkPlaces  PP = new  ParkPlaces(1);
         PP.parking( new Car()) ;
         Ticket proof = PP.parking( new Car()) ;
         Assert.assertNull(proof);
@@ -26,7 +26,7 @@ public class parkPlaceTest {
 
     @Test
     public void parkPlace_GetCar(){
-        ParkPlace  PP = new  ParkPlace(20);
+        ParkPlaces  PP = new  ParkPlaces(20);
         Car car = new Car();
         Ticket proof =  PP.parking(car) ;
         Assert.assertSame(car, PP.fetchCar(proof));
@@ -34,7 +34,7 @@ public class parkPlaceTest {
     @Test    ( expected = NoCarException.class)
     public void parkPlace_GetCar_NoThisCar() {
 
-        ParkPlace  PP = new  ParkPlace(20);
+        ParkPlaces  PP = new  ParkPlaces(20);
         Ticket proof =  PP.parking( new Car()) ;
         PP.fetchCar(proof);
         PP.fetchCar(proof);
@@ -42,7 +42,7 @@ public class parkPlaceTest {
     @Test
     public void parkPlace_ShowAvailableNum()  {
         int maxParkingNum = 20;
-        ParkPlace  PP = new  ParkPlace(maxParkingNum);
+        ParkPlaces  PP = new  ParkPlaces(maxParkingNum);
         PP.parking( new Car()) ;
         PP.parking( new Car()) ;
         Assert.assertEquals(Integer.valueOf(maxParkingNum-2),PP.GetAvailableNum());

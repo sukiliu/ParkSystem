@@ -1,37 +1,28 @@
 package ParkManagementSystem;
 
-import java.util.HashMap;
-import java.util.Map;
+public class ParkPlace extends ParkPlaces {
+    private String parkPlaceNo="";
+    private boolean isManager= false;
 
-public class ParkPlace {
-	private Map<Ticket, Car> parkedCarList = new HashMap<Ticket, Car>();
-	private Integer maxParkingNum;
+    public ParkPlace(String parkPlaceNo,boolean isManager,int capacity) {
+    	super(capacity);
+        this.isManager= isManager;
+        this.parkPlaceNo = parkPlaceNo;
+    }
+    public ParkPlace(String parkPlaceNo,int capacity) {
+    	super(capacity);
+        this.parkPlaceNo = parkPlaceNo;
+    }
+    public String getParkPlaceNo() {
+        return parkPlaceNo;
+    }
 
-	public Integer GetAvailableNum() {
-		return maxParkingNum - parkedCarList.size();
-	}
+    public void setParkPlaceNo(String parkPlaceNo) {
+        this.parkPlaceNo = parkPlaceNo;
+    }
 
-	public Double GetVacancyRate() {
-		return GetAvailableNum().doubleValue() / maxParkingNum.doubleValue();
-	}
+    public boolean getisManager() {
+        return isManager;
+    }
 
-	public ParkPlace(int maxParkingNum) {
-		this.maxParkingNum = maxParkingNum;
-	}
-
-	public Ticket parking(Car c) throws NoPlaceException {
-		if (GetAvailableNum() == 0) {
-			throw new NoPlaceException("停车场已满");
-		}
-		Ticket ticket = new Ticket();
-		parkedCarList.put(ticket, c);
-		return ticket;
-	}
-
-	public Car fetchCar(Ticket ppT) throws NoCarException {
-		if (parkedCarList.containsKey(ppT)) {
-			return parkedCarList.remove(ppT);
-		}
-		throw new NoCarException("没有此车");
-	}
 }

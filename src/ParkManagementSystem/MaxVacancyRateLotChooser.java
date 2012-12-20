@@ -3,7 +3,7 @@ package ParkManagementSystem;
 import java.util.List;
 
 public class MaxVacancyRateLotChooser implements ParkingLotChooser {
-	public ParkPlace getAvailablePark(List<ParkPlace> parkPlaceList) {
+	public ParkPlaces getAvailablePark(List<ParkPlace> parkPlaceList) {
         int maxsizeIndex=0;
 		for(int i=1;i< parkPlaceList.size();i++){
             if(parkPlaceList.get(i).GetVacancyRate()>parkPlaceList.get(maxsizeIndex).GetVacancyRate())

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class superparkingboyTest {
 
 	private Integer totalAmount;
-	private ParkingBoy parkingBoy;
+	private ParkingBoys parkingBoy;
 	private List<ParkPlace> parkPlaces;
 
 	@Before
@@ -20,11 +20,12 @@ public class superparkingboyTest {
 		List<ParkPlace> parkPlaces = new ArrayList<ParkPlace>();
 		Integer[] parkPlaceNums = new Integer[] { 10, 20 };
 		totalAmount = 0;
+		int i=0;
 		for (Integer parknum : parkPlaceNums) {
-			parkPlaces.add(new ParkPlace(parknum));
+			parkPlaces.add(new ParkPlace("0"+(i++),parknum));
 			totalAmount += parknum;
 		}
-		parkingBoy = new ParkingBoy(parkPlaces, new MaxVacancyRateLotChooser());
+		parkingBoy = new ParkingBoys(parkPlaces, new MaxVacancyRateLotChooser());
 		this.parkPlaces = parkPlaces;
 	}
 
